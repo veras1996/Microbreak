@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microbreak Timer & Random Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-image: url('Hintergrundbild3.jpg'); /* Pfad zum Bild anpassen */
+      background-size: cover;  /* Bild an den gesamten Bildschirm anpassen */
+      background-position: center;  /* Bild zentrieren */
+      background-attachment: fixed; /* Hintergrund bleibt fixiert, wenn man scrollt */
+      margin: 0;
+    }
+
+    h1, h2, p {
+      color: white;  /* Textfarbe */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Textschatten für bessere Lesbarkeit */
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tabs button {
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #f0f0f0;
+    }
+
+    .tabs button.active {
+      background-color: #ddd;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .category-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .category {
+      width: 20%;
+      padding: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
+      cursor: pointer;
+	  border: none;
+    }
+
+    .category-details {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .category.active .category-details {
+      display: block;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    input[type="number"] {
+      width: 80px;
+      padding: 5px;
+    }
+
+    /* Styling für den Container, der den Text in der Mitte hält */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: justify;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+     
+    }
+	label {
+  color: white; /* Setzt die Textfarbe des Labels auf weiß */ 
+}
+
+h3 {
+  color: white; /* Setzt die Textfarbe der h3-Elemente auf weiß */
+}
+  </style>
+</head>
+<body>
+  <h1>Microbreak Timer & Random Generator</h1>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-button active" onclick="showTab('tab1')">Information</button>
+    <button class="tab-button" onclick="showTab('tab2')">Timer</button>
+    <button class="tab-button" onclick="showTab('tab3')">Random Generator</button>
+  </div>
+
+  <!-- Tab 1: Informationen -->
+  <div id="tab1" class="tab-content active">
+    <!-- Content Container for Centered Text -->
+    <div class="content">
+      <h2>Welcome :)</h2>
+      <p>In today’s fast-paced work environment, it's easy to overlook the importance of taking breaks. However, research shows that integrating short microbreaks throughout your day can significantly improve focus, reduce stress, and enhance overall productivity. Microbreaks—short pauses lasting just a few minutes—help to refresh your mind and body, allowing you to return to tasks with renewed energy.</p>
+      <p>Our tool lets you set a timer to remind you to take regular breaks, while our randomizer offers a variety of microbreak activities from different categories. Whether you need a moment to stretch, relax, or refocus, our generator will provide you with the perfect pause. Take control of your well-being and experience the benefits of microbreaks!</p>
+    </div>
+  </div>
+
+  <!-- Tab 2: Pausentimer -->
+  <div id="tab2" class="tab-content">
+    <h2>Set the timer  for your next microbreak</h2>
+    <label for="timer">Timer (in minutes):</label>
+    <input type="number" id="timer" value="1" min="1" max="300">
+    <button onclick="startTimer()">Starten</button>
+    <p id="timer-message"></p>
+	 <audio id="alertSound" src="C:\Users\somme\Desktop\Zufallsgenerator\Audio ring.mp3" preload="auto"></audio>
+  </div>
+
+  <!-- Tab 3: Zufallsgenerator -->
+  <div id="tab3" class="tab-content">
+    <h2>Random Generator</h2>
+	<h3> Click on a category <h3>
+
+    <!-- Container für die Kategorien nebeneinander -->
+    <div class="category-container">
+      <div class="category" onclick="toggleCategory('eyes')">
+        <h3>Give your eyes a break</h3>
+        <div id="eyes" class="category-details">
+          <button onclick="generateRandom('eyes')">Give me an idea!</button> <br>
+          <div id="eyes-text"></div>
+          <img id="eyes-image" src="" alt="" style="display: none;">
+        </div>
+      </div>
+      <div class="category" onclick="toggleCategory('body')">
+        <h3>Move your body</h3>
+        <div id="body" class="category-details">
+          <button onclick="generateRandom('body')">Give me an idea!</button>
+          <div id="body-text"></div>
+          <img id="body-image" src="" alt="" style="display: none;">
+        </div>
+      </div>
+      <div class="category" onclick="toggleCategory('mind')">
+        <h3>Refresh your mind</h3>
+        <div id="mind" class="category-details">
+          <button onclick="generateRandom('mind')">Give me an idea!</button>
+          <div id="mind-text"></div>
+          <img id="mind-image" src="" alt="" style="display: none;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
